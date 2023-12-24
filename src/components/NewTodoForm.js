@@ -10,10 +10,10 @@ function NewTodoForm(props) {
     //     setDescription(event.target.value);
     // } 
 
-    const assignedChange = (event) => {
-        console.log('assigned', event.target.value);
-        setAssigned(event.target.value);
-    }
+    // const assignedChange = (event) => {
+    //     console.log('assigned', event.target.value);
+    //     setAssigned(event.target.value);
+    // }
 
     const submitTodo = () => {
         if (description !== '' && assigned !== '') {
@@ -32,7 +32,7 @@ function NewTodoForm(props) {
                         type='text'
                         className='form-control'
                         required
-                        onChange={assignedChange}
+                        onChange={e => setAssigned(e.target.value)}
                         value={assigned}
                     ></input>
                 </div>
