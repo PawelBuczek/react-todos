@@ -4,7 +4,6 @@ import TodoTable from './components/TodoTable';
 import NewTodoForm from './components/NewTodoForm';
 
 function App() {
-
   const [showAddTodoForm, setShowAddTodoForm] = useState(false);
 
   const [todos, setTodos] = useState([
@@ -12,30 +11,21 @@ function App() {
     { rowNumber: 2, rowDescription: 'Water plants', rowAssigned: 'User Two' },
     { rowNumber: 3, rowDescription: 'Make dinner', rowAssigned: 'User One' },
     { rowNumber: 4, rowDescription: 'Charge phone battery', rowAssigned: 'User One' }
-  ])
+  ]);
 
   const addTodo = (description, assigned) => {
-    let rowNumber = 0;
-    if (todos.length > 0) {
-      rowNumber = todos[todos.length - 1].rowNumber + 1;
-    } else {
-      rowNumber = 1;
-    }
     const newTodo = {
-      rowNumber: rowNumber,
+      rowNumber: todos.length > 0 ? todos[todos.length - 1].rowNumber + 1 : 1,
       rowDescription: description,
       rowAssigned: assigned
     };
-    setTodos(todos => [...todos, newTodo])
-
-  }
+    setTodos([...todos, newTodo]);
+  };
 
   const deleteTodo = (deleteToDoRowNumber) => {
-    let filtered = todos.filter(function (value) {
-      return value.rowNumber !== deleteToDoRowNumber;
-    });
+    const filtered = todos.filter(todo => todo.rowNumber !== deleteToDoRowNumber);
     setTodos(filtered);
-  }
+  };
 
   return (
     <div className='mt-5 container'>
@@ -44,17 +34,14 @@ function App() {
           Your Todo's
         </div>
         <div className='card-body'>
-          <TodoTable todos={todos}
-            deleteTodo={deleteTodo} />
+          <TodoTable todos={todos} deleteTodo={deleteTodo} />
           <button
             className='btn btn-primary'
-            onClick={() => setShowAddTodoForm(!showAddTodoForm)}>
+            onClick={() => setShowAddTodoForm(!showAddTodoForm)}
+          >
             {showAddTodoForm ? 'Close New Todo' : 'New Todo'}
           </button>
-          {showAddTodoForm &&
-            <NewTodoForm addTodo={addTodo}/>
-          }
-
+          {showAddTodoForm && <NewTodoForm addTodo={addTodo} />}
         </div>
       </div>
     </div>
