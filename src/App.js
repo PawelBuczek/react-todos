@@ -23,8 +23,8 @@ function App() {
   };
 
   const deleteTodo = (deleteToDoRowNumber) => {
-    // const filtered = todos.filter(todo => todo.rowNumber !== deleteToDoRowNumber);
-    // setTodos(filtered);
+    const filtered = todos.filter(todo => todo.rowNumber !== deleteToDoRowNumber);
+    setTodos(filtered);
   };
 
   const swapElements = (array, index1, index2) => {
@@ -49,8 +49,6 @@ function App() {
 
   const moveTodoUp = (rowNumber) => {
     if (rowNumber > 1) {
-      console.log(todos[rowNumber]);
-      console.log(todos[rowNumber + 1]);
       const newTodos = swapElements(todos, rowNumber - 1, rowNumber - 2);
 
       // Update rowNumbers in the new array
