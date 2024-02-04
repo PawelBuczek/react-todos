@@ -50,8 +50,8 @@ function App() {
   const moveTodoUp = (rowNumber) => {
     if (rowNumber > 1) {
       console.log(todos[rowNumber]);
-      console.log(todos[rowNumber+1]);
-      const newTodos = swapElements(todos, rowNumber-1, rowNumber-2);
+      console.log(todos[rowNumber + 1]);
+      const newTodos = swapElements(todos, rowNumber - 1, rowNumber - 2);
 
       // Update rowNumbers in the new array
       const updatedTodos = newTodos.map((todo, index) => ({
