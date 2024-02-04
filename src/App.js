@@ -24,7 +24,8 @@ function App() {
 
   const deleteTodo = (deleteToDoRowNumber) => {
     const filtered = todos.filter(todo => todo.rowNumber !== deleteToDoRowNumber);
-    setTodos(filtered);
+    const updatedTodos = updateRowNumbers(filtered);
+    setTodos(updatedTodos);
   };
 
   const swapElements = (array, index1, index2) => {
@@ -33,33 +34,29 @@ function App() {
     return newArray;
   };
 
-  const moveTodoDown = (rowNumber) => {
-    if (rowNumber < todos.length) {
-      const newTodos = swapElements(todos, rowNumber, rowNumber - 1);
-
-      // Update rowNumbers in the new array
-      const updatedTodos = newTodos.map((todo, index) => ({
+  const updateRowNumbers = (todos) => {
+    return todos.map((todo, index) => ({
         ...todo,
         rowNumber: index + 1,
-      }));
+    }));
+};
 
-      setTodos(updatedTodos);
+const moveTodo = (currentIndex, newIndex) => {
+    if (currentIndex > 0 && currentIndex <= todos.length && newIndex > 0 && newIndex <= todos.length) {
+        const newTodos = swapElements(todos, currentIndex - 1, newIndex - 1);
+        const updatedTodos = updateRowNumbers(newTodos);
+        setTodos(updatedTodos);
     }
-  };
+};
 
-  const moveTodoUp = (rowNumber) => {
-    if (rowNumber > 1) {
-      const newTodos = swapElements(todos, rowNumber - 1, rowNumber - 2);
+const moveTodoDown = (rowNumber) => {
+    moveTodo(rowNumber, rowNumber + 1);
+};
 
-      // Update rowNumbers in the new array
-      const updatedTodos = newTodos.map((todo, index) => ({
-        ...todo,
-        rowNumber: index + 1,
-      }));
+const moveTodoUp = (rowNumber) => {
+    moveTodo(rowNumber, rowNumber - 1);
+};
 
-      setTodos(updatedTodos);
-    }
-  };
 
   return (
     <div className='mt-5 container'>
