@@ -9,6 +9,7 @@ function TodoTable(props) {
                     <th scope='column'>Description</th>
                     <th scope='column'>Assigned</th>
                     <th scope='column'>Move Down</th>
+                    <th scope='column'>Move Up</th>
                 </tr>
             </thead>
             <tbody>
@@ -20,6 +21,7 @@ function TodoTable(props) {
                         rowAssigned={todo.rowAssigned}
                         deleteTodo={props.deleteTodo}
                         moveTodoDown={props.moveTodoDown}
+                        moveTodoUp={props.moveTodoUp}
                     />
                 ))}
             </tbody>

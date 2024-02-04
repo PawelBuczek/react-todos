@@ -32,17 +32,33 @@ function App() {
     [newArray[index1], newArray[index2]] = [newArray[index2], newArray[index1]];
     return newArray;
   };
-  
+
   const moveTodoDown = (rowNumber) => {
     if (rowNumber < todos.length) {
       const newTodos = swapElements(todos, rowNumber, rowNumber - 1);
-  
+
       // Update rowNumbers in the new array
       const updatedTodos = newTodos.map((todo, index) => ({
         ...todo,
         rowNumber: index + 1,
       }));
-  
+
+      setTodos(updatedTodos);
+    }
+  };
+
+  const moveTodoUp = (rowNumber) => {
+    if (rowNumber > 1) {
+      console.log(todos[rowNumber]);
+      console.log(todos[rowNumber+1]);
+      const newTodos = swapElements(todos, rowNumber-1, rowNumber-2);
+
+      // Update rowNumbers in the new array
+      const updatedTodos = newTodos.map((todo, index) => ({
+        ...todo,
+        rowNumber: index + 1,
+      }));
+
       setTodos(updatedTodos);
     }
   };
@@ -54,7 +70,7 @@ function App() {
           Your Todo's
         </div>
         <div className='card-body'>
-          <TodoTable todos={todos} deleteTodo={deleteTodo} moveTodoDown={moveTodoDown} />
+          <TodoTable todos={todos} deleteTodo={deleteTodo} moveTodoDown={moveTodoDown} moveTodoUp={moveTodoUp} />
           <button
             className='btn btn-primary'
             onClick={() => setShowAddTodoForm(!showAddTodoForm)}
