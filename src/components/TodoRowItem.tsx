@@ -1,11 +1,18 @@
 import React from "react";
 
-function TodoRowItem(props) {
-    const handleMoveUpClick = (event) => {
+function TodoRowItem(props: {
+    moveTodoUp(rowNumber: number): Function;
+    moveTodoDown(rowNumber: number): Function;
+    rowNumber: number,
+    rowDescription: string,
+    rowAssigned: string,
+    deleteTodo: Function
+}) {
+    const handleMoveUpClick = (event: { stopPropagation: () => void; }) => {
         event.stopPropagation();
         props.moveTodoUp(props.rowNumber);
     }
-    const handleMoveDownClick = (event) => {
+    const handleMoveDownClick = (event: { stopPropagation: () => void; }) => {
         event.stopPropagation();
         props.moveTodoDown(props.rowNumber);
     }
