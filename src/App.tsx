@@ -13,7 +13,7 @@ function App() {
     { rowNumber: 4, rowDescription: 'Charge phone battery', rowAssigned: 'User One' }
   ]);
 
-  const addTodo = (description, assigned) => {
+  const addTodo = (description: string, assigned: string) => {
     const newTodo = {
       rowNumber: todos.length > 0 ? todos[todos.length - 1].rowNumber + 1 : 1,
       rowDescription: description,
@@ -22,26 +22,26 @@ function App() {
     setTodos([...todos, newTodo]);
   };
 
-  const deleteTodo = (deleteToDoRowNumber) => {
+  const deleteTodo = (deleteToDoRowNumber: number) => {
     const filtered = todos.filter(todo => todo.rowNumber !== deleteToDoRowNumber);
     const updatedTodos = updateRowNumbers(filtered);
     setTodos(updatedTodos);
   };
 
-  const swapElements = (array, index1, index2) => {
+  const swapElements = (array, index1: number, index2: number) => {
     const newArray = [...array];
     [newArray[index1], newArray[index2]] = [newArray[index2], newArray[index1]];
     return newArray;
   };
 
   const updateRowNumbers = (todos) => {
-    return todos.map((todo, index) => ({
+    return todos.map((todo, index: number) => ({
         ...todo,
         rowNumber: index + 1,
     }));
 };
 
-const moveTodo = (currentIndex, newIndex) => {
+const moveTodo = (currentIndex: number, newIndex: number) => {
     if (currentIndex > 0 && currentIndex <= todos.length && newIndex > 0 && newIndex <= todos.length) {
         const newTodos = swapElements(todos, currentIndex - 1, newIndex - 1);
         const updatedTodos = updateRowNumbers(newTodos);
@@ -49,11 +49,11 @@ const moveTodo = (currentIndex, newIndex) => {
     }
 };
 
-const moveTodoDown = (rowNumber) => {
+const moveTodoDown = (rowNumber: number) => {
     moveTodo(rowNumber, rowNumber + 1);
 };
 
-const moveTodoUp = (rowNumber) => {
+const moveTodoUp = (rowNumber: number) => {
     moveTodo(rowNumber, rowNumber - 1);
 };
 
