@@ -28,14 +28,14 @@ function App() {
     setTodos(updatedTodos);
   };
 
-  const swapElements = (array, index1: number, index2: number) => {
+  const swapElements = (array: ToDoModel[], index1: number, index2: number) => {
     const newArray = [...array];
     [newArray[index1], newArray[index2]] = [newArray[index2], newArray[index1]];
     return newArray;
   };
 
-  const updateRowNumbers = (todos) => {
-    return todos.map((todo, index: number) => ({
+  const updateRowNumbers = (todos: ToDoModel[]) => {
+    return todos.map((todo: ToDoModel, index: number) => ({
         ...todo,
         rowNumber: index + 1,
     }));
