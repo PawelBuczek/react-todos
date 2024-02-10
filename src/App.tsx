@@ -13,7 +13,7 @@ export const App = () => {
     { rowNumber: 4, rowDescription: 'Charge phone battery', rowAssigned: 'User One' }
   ]);
 
-  const addTodo = (description: string, assigned: string) => {
+  const addTodo: (description: string, assigned: string) => void = (description: string, assigned: string) => {
     const newTodo = {
       rowNumber: todos.length > 0 ? todos[todos.length - 1].rowNumber + 1 : 1,
       rowDescription: description,
@@ -22,26 +22,26 @@ export const App = () => {
     setTodos([...todos, newTodo]);
   };
 
-  const deleteTodo = (deleteToDoRowNumber: number) => {
+  const deleteTodo: (deleteToDoRowNumber: number) => void = (deleteToDoRowNumber: number) => {
     const filtered = todos.filter(todo => todo.rowNumber !== deleteToDoRowNumber);
     const updatedTodos = updateRowNumbers(filtered);
     setTodos(updatedTodos);
   };
 
-  const swapElements = (array: ToDoModel[], index1: number, index2: number) => {
+  const swapElements: (array: ToDoModel[], index1: number, index2: number) => ToDoModel[] = (array: ToDoModel[], index1: number, index2: number) => {
     const newArray = [...array];
     [newArray[index1], newArray[index2]] = [newArray[index2], newArray[index1]];
     return newArray;
   };
 
-  const updateRowNumbers = (todos: ToDoModel[]) => {
+  const updateRowNumbers: (todos: ToDoModel[]) => ToDoModel[] = (todos: ToDoModel[]) => {
     return todos.map((todo: ToDoModel, index: number) => ({
         ...todo,
         rowNumber: index + 1,
     }));
 };
 
-const moveTodo = (currentIndex: number, newIndex: number) => {
+const moveTodo: (currentIndex: number, newIndex: number) => void = (currentIndex: number, newIndex: number) => {
     if (currentIndex > 0 && currentIndex <= todos.length && newIndex > 0 && newIndex <= todos.length) {
         const newTodos = swapElements(todos, currentIndex - 1, newIndex - 1);
         const updatedTodos = updateRowNumbers(newTodos);
@@ -49,11 +49,11 @@ const moveTodo = (currentIndex: number, newIndex: number) => {
     }
 };
 
-const moveTodoDown = (rowNumber: number) => {
+const moveTodoDown: (rowNumber: number) => void = (rowNumber: number) => {
     moveTodo(rowNumber, rowNumber + 1);
 };
 
-const moveTodoUp = (rowNumber: number) => {
+const moveTodoUp: (rowNumber: number) => void = (rowNumber: number) => {
     moveTodo(rowNumber, rowNumber - 1);
 };
 
