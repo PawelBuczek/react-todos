@@ -3,7 +3,7 @@ import './App.css';
 import { TodoTable } from './components/TodoTable';
 import { NewTodoForm } from './components/NewTodoForm';
 
-function App() {
+export const App = () => {
   const [showAddTodoForm, setShowAddTodoForm] = useState(false);
 
   const [todos, setTodos] = useState([
@@ -78,5 +78,3 @@ const moveTodoUp = (rowNumber: number) => {
     </div>
   );
 }
-
-export default App;
