@@ -1,13 +1,13 @@
 import React from "react";
 
-function TodoRowItem(props: {
-    moveTodoUp(rowNumber: number): Function;
-    moveTodoDown(rowNumber: number): Function;
+export const TodoRowItem: React.FC<{
+    moveTodoUp(rowNumber: number): void;
+    moveTodoDown(rowNumber: number): void;
     rowNumber: number,
     rowDescription: string,
     rowAssigned: string,
-    deleteTodo: Function
-}) {
+    deleteTodo(deleteToDoRowNumber: number): void
+}> = (props) => {
     const handleMoveUpClick = (event: { stopPropagation: () => void; }) => {
         event.stopPropagation();
         props.moveTodoUp(props.rowNumber);
@@ -27,5 +27,3 @@ function TodoRowItem(props: {
         </tr>
     )
 }
-
-export default TodoRowItem;

@@ -1,12 +1,11 @@
 import React from "react"
-import TodoRowItem from "./TodoRowItem"
-import { TodoCommentDescriptor } from "typescript"
+import { TodoRowItem } from  "./TodoRowItem"
 
 function TodoTable(props: {
     todos: ToDoModel[],
-    deleteTodo: (deleteToDoRowNumber: number) => Function,
-    moveTodoDown: (rowNumber: number) => Function,
-    moveTodoUp: (rowNumber: number) => Function
+    deleteTodo: (deleteToDoRowNumber: number) => void,
+    moveTodoDown: (rowNumber: number) => void,
+    moveTodoUp: (rowNumber: number) => void
 }) {
     return (
         <table className='table table-hover'>
